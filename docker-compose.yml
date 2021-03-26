@@ -2,7 +2,9 @@ version: "3"
 
 services:
   db:
-    image: postgres:alpine
+    image: postgres:13
+    ports:
+      - "5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
@@ -11,14 +13,13 @@ services:
       - POSTGRES_DB=fastapi
   web:
     build: .
-    command: bash -c "alembic upgrade head && uvicorn server:app --host ${HOST} --port ${PORT} --reload"
+    command: uvicorn server:app --port ${PORT} --reload
     volumes:
       - .:/usr/src/app
     ports:
       - "8000:${PORT}"
     depends_on:
       - db
-
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
