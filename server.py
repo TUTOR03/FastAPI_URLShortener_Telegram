@@ -9,6 +9,10 @@ from typing import List
 
 app = FastAPI()
 
+@app.get('/test')
+async def test_url():
+    return {'ok':'works'}
+
 @app.get('/urls', status_code=status.HTTP_200_OK, response_model= List[schemas.outPutShortURL], response_model_exclude_unset=True, tags=['URLs'])
 async def listURLs(db: Session = Depends(get_db)):
     urls = crud.get_urls(db)
