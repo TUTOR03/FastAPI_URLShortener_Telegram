@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
   web:
     build: .
-    command: bash -c "uvicorn server:app --port 8000"
+    command: bash -c "gunicorn server:app --bind 0.0.0.0:8000 -w 4 -k uvicorn.workers.UvicornWorker"
     volumes:
       - .:/usr/src/app
     expose:
@@ -23,7 +23,7 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 127.0.0.1:1337:1337
     depends_on: 
       - web
 volumes:
