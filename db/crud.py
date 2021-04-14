@@ -25,7 +25,9 @@ def create_url(db: Session, request: schemas.createShortURL):
     if(base_url.startswith('https://')):
         base_url = base_url.replace('https://','')
     short_url = db.query(models.ShortURL).filter(models.ShortURL.base_url == base_url).first()
+    new_one = False
     if(not short_url):
+        new_one = True
         hash_object = hashlib.sha512(base_url.encode()).hexdigest()
         num = int(hash_object, 16)
         short = ''
@@ -38,4 +40,7 @@ def create_url(db: Session, request: schemas.createShortURL):
         db.add(short_url)
         db.commit()
         db.refresh(short_url)
-    return short_url
+    return {
+            'short_url':short_url,
+            'new':new_one
+            }
