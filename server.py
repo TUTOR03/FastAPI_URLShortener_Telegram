@@ -86,6 +86,6 @@ async def handleBotMessages(request = Depends(clearBody), db: Session = Depends(
 if(__name__ == '__main__'):
     tg_bot.remove_webhook()
     time.sleep(0.1)
-    tg_bot.set_webhook(url = f'https://dca5122ddbaa.ngrok.io/{BOT_TOKEN}', allowed_updates=['message'])
+    tg_bot.set_webhook(url = f'https://{DOMAIN}/{BOT_TOKEN}', allowed_updates=['message'])
     uvicorn.run('server:app', host = HOST, port = PORT, reload = DEV)
     tg_bot.remove_webhook()
