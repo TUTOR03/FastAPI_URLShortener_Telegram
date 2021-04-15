@@ -7,9 +7,11 @@ from sqlalchemy.orm import Session
 import uvicorn
 from typing import List
 import telebot
+from telebot import apihelper
 import time
 import re
 
+apihelper.SESSION_TIME_TO_LIVE = 5 * 60
 tg_bot = telebot.TeleBot(BOT_TOKEN)
 
 app = FastAPI()
