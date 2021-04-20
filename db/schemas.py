@@ -9,7 +9,7 @@ class outPutShortURL(BaseModel):
     created : datetime
 
 class createShortURL(BaseModel):
-    base_url: str = Field(..., min_length=10, regex='^(https:\/\/[a-z,A-Z,0-9,\-,_,.]+\.[a-z,A-Z]{2,4}[А-Я,а-я,a-z,A-Z,0-9,\-,_,\/,=,?,&]*|[a-z,A-Z,0-9,\-,_,.]+\.[a-z,A-Z]{2,4}[А-Я,а-я,a-z,A-Z,0-9,\-,_,\/,=,?,&]*)$')
+    base_url: str = Field(..., min_length=10, regex="^(https:\/\/[a-z,A-Z,0-9,\-,_,.]+\.[a-z,A-Z]{2,4}[А-Я,а-я,a-z,A-Z,0-9,\-,_,\/,=,?,&]*|[a-z,A-Z,0-9,\-,_,.]+\.[a-z,A-Z]{2,4}[А-Я,а-я,a-z,A-Z,0-9,\-,_,\/,=,?,&]*)$")
 
 class updateShortURL(BaseModel):
     counter: int = Field(..., ge=0)
