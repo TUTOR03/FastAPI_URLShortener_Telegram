@@ -50,7 +50,7 @@ async def redirectURL(s_url:str = Path(..., min_length=8, max_length=8), request
     crud.update_url(db, s_url, {'counter': short_url.counter+1 if 'TelegramBot' not in request.headers['user-agent'] else 0})
     return RedirectResponse(f'https://{short_url.base_url}')
 
-@app.post(f'/{BOT_TOKEN}', status_code=status.HTTP_200_OK)
+@app.post(f'/{BOT_TOKEN}', status_code=status.HTTP_200_OK, include_in_schema=False)
 async def handleBotMessages(request = Depends(clearBody), db: Session = Depends(get_db)):
     if request['message'] == '/start':
         tg_bot.send_message(request['chat_id'], 'Wellcome')
