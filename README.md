@@ -2,7 +2,7 @@
 
 Just a simple FastAPI application, that allows you to short URLs using API or Telegram Bot  
 * [Documentation](https://tsht.stuvars.com/docs)
-* [Telegram Bot](t.me/TSHTStuvarsBot)
+* [Telegram Bot](https://t.me/TSHTStuvarsBot)
 
 ### .Env file
 ```
